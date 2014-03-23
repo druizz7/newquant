@@ -1,49 +1,19 @@
-# B-CARE Tool App
+# Example Express Application
 
-This is the B-CARE Tool App for Econometrica. 
+[![Build Status](https://travis-ci.org/shapeshed/express_example.png?branch=master)](https://travis-ci.org/shapeshed/express_example)
 
-## Requirements & Installation
+This is an example [express][4] application to accompany the article [Creating a basic site with node.js and Express][1]. The site is [hosted on Heroku][6].
 
-Node.js
-Postgresql
+The article covers starting an Express 3.x.x app and deploying it to [Heroku][3]
 
-Follow instructions for connect-pg
-	- Install pgTap into the database
-	- psql -d bcare -f ~/Software/pgstap/sql/pgtap.sql
-	- psql -d bcare -f ./node_mdoules/connect_pg/lib/session_install.sql
-	- select correct_web()_
+There is a [further article][5] detailing how to continuously deploy Node.js applications using GitHub, Travis & Heroku.
 
-## Database Operations
->promote database
-heroku pg:promote  HEROKU_POSTGRESQL_RED_URL
-
-### Dump local database
-> pg_dump -Fc --no-acl --no-owner -h localhost  bcare > bcare.dump
-
-and copy it to an S3 public bucket
-https://console.aws.amazon.com/s3/home?region=us-west-2
+![Express Example][2]
 
 
-### Dump remote database
-$ heroku pgbackups:capture
-$ curl -o latest.dump `heroku pgbackups:url`
-
-
-### Restore heroku database
-[problem is with the web schema...]
-> heroku pgbackups:restore DATABASE 'https://s3.amazonaws.com/econometrica/bcare/bcare.dump'
-
-### Set environment variables
-> heroku config:set NEW_RELIC_LICENSE_KEY=
-> heroku config:set SENDGRID_USER=
-> heroku config:set SENDGRID_KEY=
-> heroku config:set TWILIO_ACCOUNT_SID=
-> heroku config:set TWILIO_AUTH_TOKEN=
-> heroku config:set SLIDESHARE_API_KEY=
-> heroku config:set SLIDESHARE_API_SECRET=
-> heroku config:set WISTIA_API_PASSWORD=
-> heroku config:set ANALYTICS_SECRET=
-
-> git push heroku master
-
-Pat Cappelaere	Vightel		pat@cappelaere.com
+[1]: http://shapeshed.com/creating-a-basic-site-with-node-and-express/
+[2]: http://shapeshed.com/images/articles/express_example.jpg
+[3]: http://heroku.com
+[4]: http://expressjs.com/
+[5]: http://shapeshed.com/continuously-deploy-node-apps-with-github-travis-and-heroku/
+[6]: http://express-tutorial.herokuapp.com/
