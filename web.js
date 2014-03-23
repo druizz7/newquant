@@ -1,6 +1,5 @@
 //web.js
 
-var express = require("express");
 var logfmt  = require("logfmt");
 var app     = express();
 
@@ -26,11 +25,8 @@ var newrelic        = require('newrelic'),
 	users			= require('./app/controllers/users'),
 	hospitals		= require('./app/controllers/hospitals'),
 	feedback		= require('./app/controllers/feedback'),
-	twilio			= require('./app/controllers/twilio'),
-	twiml			= require('./app/controllers/twiml'),
 	persona			= require('./app/controllers/persona'),
 	User			= require('./app/models/user.js'),
-	help_desk		= require('./app/controllers/helpdesk')
 	;
 		
 var app = module.exports = express();
