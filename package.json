@@ -1,0 +1,26 @@
+{
+  "name": "newquant",
+  "version": "0.0.0",
+  "description": "my first app",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/druizz7/newquant.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "druiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/druizz7/newquant/issues"
+  },
+  "homepage": "https://github.com/druizz7/newquant",
+  "dependencies": {
+    "logfmt": "^1.0.0",
+    "express": "^3.5.0"
+  }
+}
