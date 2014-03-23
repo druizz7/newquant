@@ -1,0 +1,58 @@
+{
+    "application":      "B-CARE",
+    "copyright":        "&copy; Vightel, 2013",
+    "contact":          "David Ruiz",
+    "contact_mail":     "DRuiz@econometricainc.com",
+    "support_email":    "support@bcarehelp.zendesk.com",
+    "HOSTBASEURL":      "http://b-care-dev.herokuapp.com",
+    "PORT":				80,
+    "sendgrid":         false,
+	"blog":				"http://caretoolsystem.com/blog/",
+	"buckets": {
+			"manuals": 		"manuals",
+			"scenarios": 	"scenarios",
+			"instructions": "instructions",
+			"webinars": 	"webinars"
+	},
+	"titles": {
+		"manuals": 		"Training Guides",
+		"scenarios": 	"Resources",
+		"instructions": "B-CARE Training Manual",
+		"webinars": 	"Past Webinars"
+	},
+	"multipass":		"ef82b0a03da30131ce9912313f02bc45",
+	"subdomain": 		"bcarehelp",
+	"patch_user": 		"pat@cappelaere.com",
+	"patch_pwd": 		"Pat@cappelaere.com2",
+	
+	"facebook": 		"https://www.facebook.com/bcare.helpdesk",
+	"twitter": 			"https://twitter.com/bcarehelpdesk",
+	"linkedin": 		"http://www.linkedin.com/profile/view?id=306518085",
+
+	"slideshare":	{ 
+		"url":			"http://www.slideshare.net/bcarehelpdesk",
+		"username": 	"bcarehelpdesk",
+		"password": 	"kRfuk7y6Ng"
+	},
+	
+	"twilio":			"http://www.twilio.com",
+	
+	"admins": [
+		"pat@cappelaere.com",
+		"druiz@econometricainc.com"
+	],
+	
+	"twilio_number":	"+1 301-363-1611",
+	"twilio_appid":		"AP69968cb66c2087abdca91aa6e35b18d3",
+	"helpdesk_number":	"443-283-0369",
+	"wistia": {
+		"project": "4r4t406dt8"
+	},
+	"zendesk": {
+		"subdomain": 		"bcarehelp1387381015",
+		"portal": 			"https://bcarehelp1387381015.zendesk.com",
+		"email": 			"pat@vightel.com",
+		"token": 			"Qh7wRsMm6fRbDN9yL3NneKjKLFp2gtYHy9hnIzNO",
+		"sso_token":		"qnw6fIn17S8dYkLFo7rYrbUEpFL97v9XjngUQQa5LNqAbHIT"
+	}
+}
