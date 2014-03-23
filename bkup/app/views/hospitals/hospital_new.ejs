@@ -1,0 +1,101 @@
+<h3>Create New Hospital</h3>
+<br/>
+<br/>
+<form role='form' class="form-horizontal" id="hospital_form" name="hospital_form" action='/hospitals' method='POST'>
+	
+	<div class='form-group'>
+		<label for="name" class="col-sm-2 control-label">Name</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='email' name='name'/>
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<label for="latitude" class="col-sm-2 control-label">Latitude</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='latitude' name='latitude' />
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="longitude" class="col-sm-2 control-label">Longitude</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='longitude' name='longitude' />
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="image" class="col-sm-2 control-label">Image URL</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='image' name='image' />
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="website" class="col-sm-2 control-label">Website</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='website' name='website' />
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="address" class="col-sm-2 control-label">Address</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='address' name='address' />
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="address" class="col-sm-2 control-label">State</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='state' name='state' />
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="address" class="col-sm-2 control-label">BPID</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='bpid' name='bpid' />
+		</div>
+	</div>
+
+	
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/additional-methods.js"></script>
+
+<script>
+jQuery.validator.setDefaults({
+  debug: 	false
+});
+
+$( "#hospital_form" ).validate({
+	submitHandler: function(form) {
+	    $(form).ajaxSubmit();
+	},
+	rules: {
+		name: {
+			required: true
+		},
+		latitude: { 
+			required: true,
+			"number": true,
+			"range": [-90, 90]
+		},
+		longitude: { 
+			required: true,
+			"number": true,
+			"range": [-180, 180]
+		},
+		address: {
+			required: true
+		},
+		state: {
+			required: true
+		}
+	}
+});
+</script>

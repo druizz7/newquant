@@ -1,0 +1,13 @@
+
+[0m[0m
+[0m  User Access[0m
+  [32m  ✓[0m[90m should allow anyone to access the help desk (about page) [0m[31m(87ms)[0m
+  [32m  ✓[0m[90m should allow anyone to access the contact page [0m[31m(102ms)[0m
+  [32m  ✓[0m[90m should NOT allow anonymous user to access the Training Material page [0m
+  [32m  ✓[0m[90m should NOT allow anonymous user to access the registration page [0m[31m(81ms)[0m
+  [32m  ✓[0m[90m should NOT allow anonymous user to access the FAQ page [0m
+  [32m  ✓[0m[90m should NOT allow anonymous user to access the Help Desk page [0m[33m(50ms)[0m
+
+
+[92m [0m[32m 6 passing[0m[90m (397ms)[0m
+

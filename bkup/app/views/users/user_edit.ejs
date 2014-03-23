@@ -1,0 +1,243 @@
+<h2><a href='javascript:change_avatar("<%= new_avatar(u.email+u.displayname+Date.now()) %>");'>
+<!--
+	<img src='<%- u.gravatar %>' width='64' id='gravatar_icon'/>
+-->
+	</a> &nbsp; User: <%= u.displayname %></h2>
+
+<form role='form' class="form-horizontal" action='/users/<%=u.user_id%>' method='POST' id='user_edit_form'>
+<fieldset>
+
+	<div class='form-group'>
+	<!--
+		<label for="id" class="col-sm-2 control-label">User ID</label>
+	-->
+	    <div class="col-sm-10">
+		<input type='hidden' class='form-control' id='user_id' name='user_id' value='<%= u.user_id %>'/>
+	<!-- <%= u.user_id %> -->
+		</div>
+	</div>
+	
+	<!--
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Singly ID</label>
+	    <div class="col-sm-10">
+		<input type='hidden' class='form-control' id='singly_id' name='singly_id' value='<%= u.singly_id %>'/><%= u.singly_id %>
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Gravatar</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='gravatar' name='gravatar' value='<%= u.gravatar %>'/>
+		<span class="help-block">A link to an icon representing you 
+			<span id="gravatar_span">(<a href='javascript:change_avatar("<%= new_avatar(u.email+u.displayname+Date.now()) %>");'>or create new one</a>)</span>
+		</span>
+		</div>
+	</div>
+	-->
+	<input type='hidden' class='form-control' id='gravatar' name='gravatar' value='<%= u.gravatar %>'/>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">First Name</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='first_name' name='first_name' value='<%= u.first_name %>'/>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Last Name</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='last_name' name='last_name' value='<%= u.last_name %>'/>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Display Name</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='displayname' name='displayname' value='<%= u.displayname %>'/>
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<label for="phone" class="col-sm-2 control-label">Phone</label>
+		<% if(u.phone === undefined || u.phone === "" || u.phone === null) { %>
+	    <div class="col-sm-10 has-error">
+		<% } else { %>
+	    <div class="col-sm-10">
+		<% } %>
+		<input class='form-control' id='phone' name='phone' value='<%= u.phone %>'/>
+		<span class="help-block">Please provide your phone # (example: +13015963989)</span>
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<label for="alternate_phone" class="col-sm-2 control-label">Alternate Phone</label>
+		<% if(u.alternate_phone === undefined || u.alternate_phone === "" ) { %>
+	    <div class="col-sm-10 has-error">
+		<% } else { %>
+	    <div class="col-sm-10">
+		<% } %>
+		<input class='form-control' id='alternate_phone' name='alternate_phone' value='<%= u.alternate_phone %>'/>
+		<span class="help-block">Please provide your alternate phone # (example: +13015963989)</span>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="email" class="col-sm-2 control-label">Email</label>
+		<!--
+		<% if(u.email === undefined || u.email === "" || u.email === null) { %>
+	    <div class="col-sm-10 has-error">
+		<% } else { %>
+	    <div class="col-sm-10">
+		<% } %>
+		<input class='form-control' id='email' name='email' value='<%= u.email %>'/>
+		<span class="help-block">Please provide your email to receive help from the desk</span>
+		</div>
+		-->
+	    <div class="col-sm-10">
+		<%= u.email %>
+		</div>
+		
+	</div>
+	
+	<div class='form-group'>
+		<label for="hospital_id" class="col-sm-2 control-label">Facility</label>
+	    <div class="col-sm-10">
+		<input class="form-control" id='hospital_id' name='hospital_id' value='<%= u.hospital_id %>'/>
+		<span class="help-block">[Type first few characters...]</span>
+		</div>
+	</div>
+
+	<% if( user.is_admin ) { %> 
+		<div class='form-group'>
+			<label for="Admin?" class="col-sm-2 control-label">Admin?</label>
+		    <div class="col-sm-10">
+			<% if(u.is_admin == true){ %> 
+				<input type='checkbox' class='form-control' id='is_admin' name='is_admin' checked/>
+			<% } else { %>
+				<input type='checkbox' class='form-control' id='is_admin' name='is_admin'/>
+			<% } %>
+			</div>
+		</div>
+	
+		<div class='form-group'>
+			<label for="Banned?" class="col-sm-2 control-label">Banned?</label>
+		    <div class="col-sm-10">
+			<% if(u.is_banned == true){ %> 
+				<input type='checkbox' class='form-control' id='is_banned' name='is_banned' checked/>
+			<% } else { %>
+				<input type='checkbox' class='form-control' id='is_banned' name='is_banned' />
+			<% } %>			
+			</div>
+		</div>
+		
+		<div class='form-group'>
+			<label for="DeskID" class="col-sm-2 control-label">Desk ID</label>
+		    <div class="col-sm-10">
+				<input class="form-control" id='desk_id' name='desk_id' value='<%= u.desk_id %>'/>
+			</div>
+		</div>
+		
+	<% } %>
+
+    </fieldset>
+	
+	<div class='container'>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+	  
+</form>
+<br/>
+
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/additional-methods.js"></script>
+
+<script>
+var data = <%- JSON.stringify(hospitals) %>
+
+function change_avatar( url ) {
+	//var gravatar = new_avatar(url)
+	$('#gravatar').val(url);
+	$('#gravatar_span').html('');
+	
+	$('#gravatar_icon').attr('src', url);
+}
+function format(item) { return item.name; };
+
+$('#hospital_id').select2({
+	placeholder: "Select Hospital...",
+ 	minimumInputLength: 3,
+	data: {results: data, text:'name'},
+ 	formatSelection: format,
+	formatResult: format
+})
+
+jQuery.validator.setDefaults({
+  debug: 	false,
+  success: 	"valid"
+});
+jQuery.validator.addMethod("lettersonly", function(value, element) {
+  return this.optional(element) || /^[a-z ]+$/i.test(value);
+}, "Letters only please"); 
+
+var validator = $( "#user_edit_form" ).validate({
+  rules: {
+	displayname: {
+		required: true,
+		lettersonly: true,
+	},
+	first_name: {
+		lettersonly: true,
+		required: true
+	},	
+	last_name: {
+		required: true,
+		lettersonly: true
+	},
+	email: {
+		required: true,
+		email: true	
+	},
+	phone: {
+		required: true,
+		phoneUS: true
+	},
+	alternate_phone: {
+		phoneUS: true
+    },
+	hospital_id: {
+		required: true,
+        number: true
+	}
+  },
+//  ignore: ".select2-focuser, .select2-offscreen, :hidden",
+  message: {
+	  first_name: {
+		  required: "Do not leave this field blank"
+	   },
+	  displayname: {
+		  required: "Do not leave this field blank"
+	  },
+	  last_name: {
+		  required: "Do not leave this field blank"
+	  },
+	  hospital_id: {
+		  required: "Do not leave this field blank"
+	  },
+	  phone: {
+		  required: "Please enter a valid US Phone number such as +14032030399"
+	  },
+	  alternate_phone: {
+		  required: "Please enter a valid US Phone number such as +14032030399"
+	  }
+  },
+  // set this class to error-labels to indicate valid fields
+  success: function(label) {
+  	// set &nbsp; as text for IE
+  	label.html("&nbsp;").addClass("checked");
+  },
+  highlight: function(element, errorClass) {
+  	$(element).parent().next().find("." + errorClass).removeClass("checked");
+  }
+});
+</script>

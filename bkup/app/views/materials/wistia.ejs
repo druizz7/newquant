@@ -1,0 +1,65 @@
+<ol class="breadcrumb">
+  <li><a href="/training">Training Materials</a></li>
+  <li class="active">Webinar Materials</li>
+</ol>
+
+<div class='container'>
+<h2>Webinar Materials</h2>
+<div class="row">
+	<table class='table'>
+	<% for( var f in ppts ) { var ppt = ppts[f]; %>
+		<div class="row">
+		  <div class="col-md-8">
+		    <%- ppt['Embed'] %>&nbsp;<em class='text-muted'>Last Updated: <%= ppt.Updated %></em>
+			<% if( ppt.DownloadUrl != undefined ) { %>
+			<a href='<%= ppt.DownloadUrl %>'><i class='glyphicon glyphicon-download-alt'></i>Download</a>
+			<% } %>
+		  </div>
+		</div>
+	<% } %>
+</table>
+</div>
+
+<hr/>
+
+<h2>Webinar Videos</h2>
+<div class="row">
+<table class='table'>
+<% for( var f in files ) { var file = files[f]; %>
+	<tr>
+	<td>
+	<a href="javascript:display_iframe('<%=file.hashed_id%>');" class="thumbnail">
+		<img src='<%= file.thumbnail.url %>' width='<%= file.thumbnail.width %>' height='<%= file.thumbnail.height %>'/>
+	</a>
+	</td>
+	<td>
+		<h4><a href="javascript:display_iframe('<%=file.hashed_id%>');"><%= file.name %></a><br/></h4>
+		<%- file.description %>
+		<p class='text-muted'>
+			<%= file.type %>&nbsp;
+			(about <%= file.human_duration %>)
+		&nbsp;/&nbsp;Created <%= moment(file.created).fromNow() %></p>
+		<div id='div-<%= file.hashed_id %>' style="display:none">
+			<iframe src="//fast.wistia.net/embed/iframe/<%= file.hashed_id %>" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" 
+				allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="580"></iframe>
+		</div>
+	</td>
+	<br/>
+	</tr>
+<% } %>
+</table>
+</div>
+</div>
+<script>
+
+function display_iframe(id) {
+	var frameID = "div-"+id
+	var iframe	= $('#'+frameID)
+	iframe.toggle();
+    //iframe.innerHTML = iframe.innerHTML;
+}
+</script>
+
+
+
+

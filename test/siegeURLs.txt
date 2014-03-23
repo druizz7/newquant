@@ -1,0 +1,13 @@
+#Siege URLs for B-CARE Testing
+#all Public URLs
+http://bcare.herokuapp.com/
+http://bcare.herokuapp.com/contact
+http://bcare.herokuapp.com/privacy
+http://bcare.herokuapp.com/about
+https://www.slideshare.net/slideshow/embed_code/28886281
+http://cdn.slidesharecdn.com/ss_thumbnails/110713briefingorientation-131204090252-phpapp02-thumbnail.jpg?cb=1392046383
+#http://www.slideshare.net/bcarehelpdesk/110713-briefing-orientation
+#
+#http://www.slideshare.net/bcarehelpdesk/110813-intro-b-care
+http://cdn.slidesharecdn.com/ss_thumbnails/110813introb-care-131204090336-phpapp02-thumbnail.jpg?cb=1392058118
+https://www.slideshare.net/slideshow/embed_code/28886303

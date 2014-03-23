@@ -1,0 +1,62 @@
+<h2>Hospitals</h2><a href='/hospitals/new'><i class="glyphicon glyphicon-plus">&nbsp;Add...</i></a>
+
+<table class="table table-striped">
+<thead><tr>
+	<th>ID</th>
+	<th>Picture</th>
+	<th>Name</th>
+	<th>Address</th>
+	<th>State</th>
+	<th>BPID</th>
+	<th>Desk ID</th>
+	
+	<% if( user.is_admin ) { %>
+	<th>Actions</th>
+	<% } %>
+	
+</tr></thead>
+<tbody>
+<% for( h in hospitals) { %>
+  <tr>
+	<td><%=  hospitals[h].hospital_id %></td>
+	<td><img src='<%= hospitals[h].image %>' width=32 /></td>
+	<td><%= hospitals[h].name %></td>
+	<td><%= hospitals[h].address %></td>
+	<td><%= hospitals[h].state %></td>
+	<td><%= hospitals[h].bpid %></td>
+	<td><%= hospitals[h].desk_id %></td>
+	<td>
+	<% if( user.is_admin ) { %>
+	<a href='javascript:delete_hospital("<%= hospitals[h].name %>",<%= hospitals[h].hospital_id %>);'><i class='glyphicon glyphicon-trash'></i></a>&nbsp;
+	<a href='/hospitals/<%=hospitals[h].hospital_id%>'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;
+	<% } %>
+	
+	</td>
+  </tr>
+  <% } %>
+</tbody>
+</table>
+
+<script>
+function AjaxFailed(result, text, error) {
+	 console.log("Failed:"+JSON.stringify(result))
+	 
+     alert("Failed:"+result.status + ' ' + result.statusText);
+}
+function delete_hospital(name, id) {
+	var result = confirm("Are you sure you want to delete?");
+	var url = '/hospitals/'+id+"/delete"
+	console.log("delete url:"+url)
+	if (result==true) {
+	    //Logic to delete the item
+		console.log("deleting "+name);
+		$.ajax({
+			'url': url,
+			'type':'POST',
+			'success': location.reload(),
+			'error': location.reload()
+		})
+	}
+}
+</script>
+

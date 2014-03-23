@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	
+	<link rel="icon" type="image/png" href="/img/bcare_16x16_favicon.jpg" />
+		  
+	<!-- Bootstrap 	
+	<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+	<link href="/css/bootstrap.css" rel="stylesheet" />
+	-->
+	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<link href="/css/select2.css" rel="stylesheet" />
+	<link href="/css/select2-bootstrap.css" rel="stylesheet" />
+	<link href="/css/persona-buttons.css" rel="stylesheet" />
+
+	<title>B-CARE Tool</title>
+	
+ 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!--
+    <script src="/js/jquery.cookie.js"></script>
+	-->
+ 	<script src="/js/bootstrap.min.js"></script>
+ 	<script src="/js/select2.min.js"></script>
+	<script src='/js/moment.min.js'></script>
+	
+	<script src="https://login.persona.org/include.js"></script>
+	
+	<script type="text/javascript">
+		var analytics=analytics||[];(function(){var e=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group"],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)};
+
+		analytics.load("<%= analytics_secret %>");
+	</script>	
+	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->	   
+	
+	<style>
+	#top-bar {
+		margin-left: 0;
+		height: 70px;
+		color: black;
+		background: #FFFFFF;
+		font-size: 24px;
+		padding-top: 10px;
+	}
+	
+	.splash_screen {
+		position: fixed;
+		left: 0px;
+		top: 141px;
+	    margin-left: 0;	
+		background-color: #0971ce;
+	}
+	
+	.bottom_splash_screen {
+		position: fixed;
+		left: 10px;
+		top: 760px;
+		color: black;
+	    margin-left: 15;	
+	}
+	
+	.navbar-default {
+		background-color: #0971ce;
+		border-color: #e7e7e7;
+		color: #00ffff;
+	}
+	
+	.navbar {
+		min-height: 40px;
+		max-width: 1080px;
+	}
+	
+	.navbar-default .navbar-nav>li.active>a, .navbar-nav>li.active>a:hover, .navbar-nav>li.active>a:focus {
+		color: #fdce09;
+		background-color: #0971ce;
+		text-decoration:underline;	
+	}
+	
+	.navbar-default .navbar-nav>li>a {
+		color: #ffffff; 
+	}
+	
+	.navbar-nav > li > a:hover {
+		background-color: #fff000;
+	    color: #ff0000;
+	}
+	
+	.login {
+		float: right;
+		text-align: right;
+	}
+	.alert-error {
+		background-color: rgb(242,222,222);
+		color: rbg(185, 74, 72)
+	}
+	hr {
+		color: red;
+		border-top: 1px solid #ff0000
+	}
+	pre {
+		background-color: #DBE2F8;
+	}
+	#grad1
+	{
+		height:10px;
+		background: -webkit-linear-gradient(left, #fdce09 , white); /* For Safari */
+		background: -o-linear-gradient(right, #fdce09, white); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(right, #fdce09, white); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to right, #fdce09 , white); /* Standard syntax (must be last) */
+	}
+	.container-fluid {
+		max-width: 1080px;
+	}
+	</style>
+  </head>
+
+  <body>
+ 		<div class="container-fluid" id='top-bar'>
+		  
+			<img alt='B-CARE logo'src='/img/B-CARE_Logo.png' width='180'></img>
+			<b id='browser' style='display:none'>Internet Explorer Is Not Supported!</b>
+			
+			<% if(typeof user === 'undefined') { %>
+			    <!--
+				<div class='login text-muted'> &nbsp;For Questions or Tickets</div>&nbsp;<a href='/login' class='login'>Login</a>&nbsp;
+				-->
+			    
+				<div class="persona-button login" id='signin'>
+					<span>Sign in with your Email</span>
+				</div>
+				&nbsp;&nbsp; <img class="login" src='/img/CMS_Logo.jpg' width='160'/>
+				<br/>			     
+				
+			<% } else { %>
+				<span style="float:right; font-size:14px">
+				
+				<div class="btn-group">
+				  <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				  	<span class="glyphicon glyphicon-user"></span>
+				    <%= user.displayname %>
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="/users/<%= user.user_id%>">View Profile</a></li>
+					<!--
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="/help_desk/tickets">My Tickets</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/help_desk/new_ticket">Create New Ticket</li>
+					
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/help_desk/new_question">Ask A Public Question</li>
+				    
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/twilio">
+						<i class="glyphicon glyphicon-earphone"></i>&nbsp;Call Help Desk</a>
+					</li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/help_desk/chat">Not Sure?</li>
+					-->
+					<li role="presentation" class="divider"></li>
+					<!--
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout</a></li>
+					-->
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:signout();"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout</a></li>
+				
+				  </ul>
+				</div>
+				&nbsp;&nbsp;<img  src='/img/CMS_Logo.jpg' width='160'/>
+				</span>
+			<% } %> 
+			
+		</div>
+		<br/>
+		
+		<div class="navbar navbar-default" role="navigation">
+		    <div class="navbar-header">
+		       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		         <span class="sr-only">Toggle navigation</span>
+		         <span class="icon-bar"></span>
+		         <span class="icon-bar"></span>
+		         <span class="icon-bar"></span>
+		       </button>
+			</div>
+	 
+	    	<div class="container">
+	  		    <ul class="nav navbar-nav">
+		      		<li id="home_menu"><a href="/">Home</a></li>
+		      		<li id="about_menu"><a href="/about">About B-CARE</a></li>
+				  
+				  <% if( typeof user != 'undefined') { %>
+			      <li id="training_menu"><a href="/training">Training Material</a></li>
+			      <li id="registration_menu"><a href="/registration">Registration</a></li>
+			      <li id="faq_menu"><a href="/faq">FAQ</a></li>
+				  <li id="help_desk_menu"><a href="/help_desk">Help Desk</a></li>
+				  <% } %>
+				  
+				  <!--
+			      <li id="blog_menu"><a href="/blog">News/Forum</a></li>				  
+			      <li id="trainers_menu"><a href="/trainers">B-CARE Trainers</a></li>
+				  -->
+			      
+				  <li id="contact_menu"> <a href="/contact">Contact Us</a></li>
+				  
+				  <% if( typeof user != 'undefined' && user.is_admin ) { %>
+			      <li id="admin_menu"> <a href="/admin">Admin</a></li>
+				  <% } %>
+				  
+				  <!--
+				  <% if( typeof user != 'undefined' && user.is_admin ) { %>
+						  <li class="btn dropdown-toggle" id="admin_menu" data-toggle="dropdown">Admin
+							  <span class="caret"></span>
+						  </li>
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="admin_menu">
+					     	<li role="presentation"><a role="menuitem" tabindex="-1" href="/admin/users">Users</a></li>
+					      	<li role="presentation"><a role="menuitem" tabindex="-1" href="/admin/analytics">Analytics</a></li>
+					      </ul>
+				  <% } %>
+				  -->
+				  
+			    </ul>
+			</div>
+		</div>
+		
+
+		<div class='container-fluid'>
+		<%- body %>		
+		</div>
+					
+	<div class='footer'>
+		<div class="container">
+		Econometrica Inc (c) 2014 &nbsp;-&nbsp;
+		<a href='/privacy'>Privacy Statement</a>
+		</div>
+	</div>
+	
+	
+	<script>
+	// unset all menus
+	$('#about_menu').attr('class','');
+	$('#training_menu').attr('class','');
+	$('#registration_menu').attr('class','');
+	$('#faq_menu').attr('class','');
+	$('#help_desk_menu').attr('class','');
+	$('#contact_menu').attr('class','');
+
+	$('<%= typeof menu === 'undefined' ? "NA": menu %>').attr('class','active');
+	</script>
+	
+	<!-- Feedback 
+	<link href="/css/jquery.feedback_me.css" rel="stylesheet">
+    <script src="/js/jquery.feedback_me.js"></script>
+	<script>
+	$(document).ready(function () {
+	    //set up some minimal options for the feedback_me plugin
+	    fm_options = {
+	        bootstrap: false,
+			title_label: "Website Feedback",
+			position: "right-bottom",
+	        message_placeholder: "Please, Give us feedback on this site...",
+			message_required: true,
+	        feedback_url: "/feedback",
+			
+		  <% if( typeof user === 'undefined') { %>
+    	        name_placeholder: "Name please",
+				name_required: true,
+		  <% } else {%>
+			name_required: false,			 
+	        name_placeholder: "<%= user.displayname %>",
+			  <% } %>
+		  
+	        custom_params: {
+	            csrf: "helpdesk_secret_token",
+				
+			  <% if( typeof user != 'undefined') { %>
+	            user_id: "<%= user.displayname %>",
+	            user_email: "<%= user.email %>",
+			  <% } %>
+			  
+	            feedback_type: "website"
+	        }
+	    };
+ 
+	    //init feedback_me plugin
+	    fm.init(fm_options);
+     
+	});
+	</script>
+	-->
+	<script>
+	function signout() {
+	    navigator.id.logout();
+		$.post('/persona/logout', function() {
+			window.location = "/";
+		});
+	}
+	$(function() {
+	  $('#signin').on('click', function(event) {
+	    event.preventDefault();
+	    navigator.id.request();
+	  });
+
+	  // replaced by signout
+	  $('#signout').on('click', function(event) {
+	    event.preventDefault();
+	    navigator.id.logout();
+	  });
+
+	  var email = 'bob@example.com';
+	  
+	  <% if( typeof user != 'undefined' ) { %>
+	  var currentUser = <%- JSON.stringify(user) %>;
+	  if( currentUser ) {
+		  email = currentUser.email;
+		  //console.log("email:"+email)
+	  }
+	  <% } %>
+	  
+	  // Mozilla Persona integration
+	  navigator.id.watch({
+	    loggedInUser: email,
+	    onlogin: function(assertion) {
+			console.log("onlogin")
+  		  //if( email ) return;
+	      var token = $('#token').val();
+	      $.post('/persona/verify', {assertion: assertion, _csrf: token})
+		  .done(function(data) {
+  			console.log("onlogin data", data)
+	        window.location.reload();
+	      })
+		  .fail(function(xhr, status, err) {
+			  navigator.id.logout();
+			  alert("Login failure: " + err);
+		  });
+	    },
+	    onlogout: function() {
+			console.log("onlogout"+email)
+		    navigator.id.logout();
+			// window.location = "/persona/logout";
+		  	//if( email == null) {
+			//  $.post('/persona/logout', function() {
+			//	  email = null;
+			//	  window.location = "/";
+			//  });
+	  	  //}
+	    }
+	  });  
+	});
+	
+	// check for browser compatibility
+	//if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){ 
+	//	var browser_error = "Internet Explorer is Not Supported!"
+	//	$('#browser').html(browser_error);
+	//	$('#browser').show();
+	//}
+	
+	</script
+</body>
+</html>

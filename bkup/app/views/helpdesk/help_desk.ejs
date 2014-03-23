@@ -1,0 +1,96 @@
+<table class='table table-condensed'>
+  <tr>
+	<td width='250'>
+		<img src='/img/BCARE_Honeycomb_Art.png' width='200'/>
+	</td>
+	
+	<td>
+	
+	<div class="row">  
+		<div id="grad1"></div><br/>
+		
+		<span style="font-size: 24px; color: #CC0000;">
+			<a name="content"></a>Help Desk Tools
+		</span>
+		<br/><br/>
+
+		<% if( messages ) { %>
+		<div class='alert alert-error'>
+		 <button type="button" class="close" data-dismiss="alert">&times;</button>
+		 <%= messages %>
+		</div>
+		<% } %>
+
+		<ul class="list-group" >
+			<li class="list-group-item"><a href="/help_desk/tickets">View My Help Desk Tickets</a></li>
+			<li class="list-group-item"><a href="/help_desk/new_ticket">Create New Help Desk Ticket</li>
+
+		<!--
+			<li class="list-group-item"><a href="/help_desk/new_question">Ask A Public Question</li>
+		-->
+	
+		<!--  
+			<li class="list-group-item"><a href="/twilio">
+			<i class="glyphicon glyphicon-earphone"></i>&nbsp;Call Help Desk</a>
+			</li>
+			<li class="list-group-item"><a href="/help_desk/chat">Not Sure?</li>
+			-->
+		</ul>
+
+	</td></tr>
+</table>	
+<br/>
+<br/>
+
+
+
+
+
+
+
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/additional-methods.js"></script>
+
+<script>
+jQuery.validator.setDefaults({
+  debug: 	false,
+  success: 	"valid"
+});
+
+var validator = $( "#ticket_form" ).validate(
+	{
+		rules: {
+			name: {
+				required: true
+			},
+			facility_name: {
+				required: true
+			},
+			facility_address: {
+				required: true
+			},
+			facility_bpid: {
+				required: true
+			},
+			topicr: {required: function(element) {
+			   return $('input[name="topic"]:checked').val() == 'true';
+			}},				  
+			problem: {
+				required: true
+			},
+			email: {
+			  required: true,
+			  email: true	
+			},
+			phone: {
+				required: true,
+				phoneUS: true
+			}
+		},
+		message: {
+			phone: {
+				required: "Please enter a valid US Phone number such as +14032030399"
+			}
+	  }
+  });
+</script>

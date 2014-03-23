@@ -1,0 +1,51 @@
+<h2>Users</h2>
+
+<table class="table table-striped">
+<thead><tr>
+	<th>User ID</th>
+	<th>Picture</th>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Hospital ID</th>
+	<th>Admin?</th>
+	<th>Banned?</th>
+	<th>Desk ID?</th>
+	<th>Actions</th>
+</tr></thead>
+<tbody>
+<% for( u in users) { %>
+  <tr>
+	<td><%= users[u].user_id %></td>
+	<td><img src='<%- users[u].gravatar || "/img/no_gravatar.png" %>' width=32 /></td>
+	<td><%= users[u].displayname %></td>
+	<td><%= users[u].email %></td>
+	<% if (users[u].hospital_id != null) { %>
+		<td><a href='/hospitals/<%= users[u].hospital_id %>'><%= users[u].hospital_id %></a></td>
+	<%} else {%>
+		<td><%= users[u].hospital_id %></td>	
+	<%}%>
+	
+	<td><%= users[u].is_admin %></td>
+	<td><%= users[u].is_banned %></td>
+	<td><%= users[u].desk_id %></td>
+	
+	<td>
+	<a href='javascript:delete_user('<%= users[u].displayname %>',<%= users[u].user_id %>)'><i class='glyphicon glyphicon-trash'></i></a>&nbsp;
+	<a href='/users/<%=users[u].user_id%>'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;
+	</td>
+	
+  </tr>
+  <% } %>
+</tbody>
+</table>
+
+<script>
+
+function delete_user(name, id) {
+	var result = confirm("Are you sure you want to delete this user?");
+	if (result==true) {
+	    //Logic to delete the item
+		alert("Deleting "+name)
+	}
+}
+</script>

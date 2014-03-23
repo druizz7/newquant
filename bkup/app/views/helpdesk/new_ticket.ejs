@@ -1,0 +1,144 @@
+<div class='container'>
+<h2>Create New Ticket</h2>
+
+<h3>From:</h3>
+<div class='well'>
+<table >
+<tr><td>Name:</td><td><%= user.displayname %></td></tr>
+<tr><td>Email:</td><td><%= user.email %></td></tr>
+<tr><td>Phone:</td><td><%= user.phone %></td></tr>
+<tr><td>Alternate Phone Number:</td><td><%= user.alternate_phone %></td></tr>
+<tr><td>Hospital Name:</td><td><%= user.hospital_name %></td></tr>
+<tr><td>Hospital BPID:</td><td><%= user.hospital_bpid %></td></tr>
+</table>
+</div>
+<br/>
+
+<form role='form' class="form-horizontal" method='post' action='/help_desk/submit_ticket' id="new-ticket">
+	<fieldset>
+		<input type='hidden' class='form-control' id='user_id' name='user_id' value='<%= user.user_id %>'/>
+		<input type='hidden' class='form-control' id='channel' name='channel' value='email'/>
+		
+		<label>Topic Options</label><br/>
+		<div class="col-lg-6">
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_login' checked>
+		      </span>
+		      <input type="text" class="form-control" value="B-CARE Portal Access" />
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_submission'>
+		      </span>
+		      <input type="text" class="form-control" value="B-CARE Submission" />
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_training'>
+		      </span>
+		      <input type="text" class="form-control" value="Training Questions" />
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_registration'>
+		      </span>
+		      <input type="text" class="form-control" value="Training/Webinar Registration Issues" />
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_clinical'>
+		      </span>
+		      <input type="text" class="form-control" value="B-CARE Items-Clinical" />
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_non_clinical'>
+		      </span>
+		      <input type="text" class="form-control" value="B-CARE Items-Non-Clinical" />
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+		      <span class="input-group-addon">
+		        <input type="radio" name='topic' value='b_care_tool_other'>
+		      </span>
+		      <input type="text" class="form-control" value="Other" />
+		    </div><!-- /input-group -->
+		  	<br/>
+			<div class='form-group'>
+				<label for="title" class="col-sm-2 control-label">Title</label>
+			    <div class="col-sm-8">
+					<input class="form-control" id='title' name='title' />
+				</div>
+			</div>
+	
+			<!--
+			<div class='form-group'>
+				<label for="priority" class="col-sm-2 control-label">Priority</label>
+			    <div class="col-sm-8">
+					<select id='priority' name='priority'>
+					<option value='-'>-</option>
+					<option value='low'>Low</option>
+					<option value='normal'>Normal</option>
+					<option value='high'>High</option>
+					<option value='urgent'>Urgent</option>
+					</select>
+				
+				</div>
+			</div>
+			-->
+			
+			<div class='form-group'>
+				<label for="ticket_text" class="col-sm-2 control-label">Description</label>
+			    <div class="col-sm-8">
+					<textarea class='form-control' id='ticket_text' name='ticket_text' rows='5'></textarea>
+				</div>
+			</div>
+				
+			<div class='form-group'>
+				<div class="col-sm-8">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+  
+	</fieldset>
+</form>
+</div>
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/additional-methods.js"></script>
+
+<script>
+var data = <%- JSON.stringify(labels) %>
+
+function format(item) { return item.name; };
+
+$('#topic').select2({
+	placeholder: "Select Topic...",
+	data: {results: data, text:'name'},
+ 	formatSelection: format,
+	formatResult: format
+})
+
+jQuery.validator.setDefaults({
+  debug: 	false,
+  success: 	"valid"
+});
+
+var validator = $( "#new-ticket" ).validate({
+  rules: {
+	title: {
+		required: true,
+	},
+	ticket_text: {
+		required: true,
+	}
+  }
+})
+</script>
+

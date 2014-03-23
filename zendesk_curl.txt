@@ -1,0 +1,24 @@
+# list ticket fields
+
+curl https://bcarehelp1387381015.zendesk.com/api/v2/ticket_fields.json \
+  -u pat@vightel.com/token:Qh7wRsMm6fRbDN9yL3NneKjKLFp2gtYHy9hnIzNO
+
+# Show Forum 21006074
+curl https://bcarehelp1387381015.zendesk.com.zendesk.com/api/v2/forums/21006074.json \
+  -H "Content-Type: application/json" \
+ -k -v -u pat@vightel.com/token:Qh7wRsMm6fRbDN9yL3NneKjKLFp2gtYHy9hnIzNO
+ 
+ # Add Topic to that forum
+curl https://bcarehelp1387381015.zendesk.com/api/v2/topics.json \
+  -H "Content-Type: application/json" \
+  -v -u pat@vightel.com/token:Qh7wRsMm6fRbDN9yL3NneKjKLFp2gtYHy9hnIzNO -X POST \
+  -d '{"topic": {"forum_id": 21006074, "title": "B-CARE Tool - Developers", "body": "B-CARE Tool - Develoeprs Questions."}}'
+  
+curl 'https://bcarehelp1387381015.zendesk.com/api/v2/users/search.json?query=pat@geobliki.com' \
+-H "Content-Type: application/json" -X GET \
+-u pat@vightel.com/token:Qh7wRsMm6fRbDN9yL3NneKjKLFp2gtYHy9hnIzNO
+
+
+curl "https://api.wistia.com/v1/projects.json?api_password=d8bed7f42d15295b8cc661874e89ae129e5ae45a"
+
+curl "https://api.wistia.com/v1/projects/570957.json?api_password=d8bed7f42d15295b8cc661874e89ae129e5ae45a"
