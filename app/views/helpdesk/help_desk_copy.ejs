@@ -1,0 +1,228 @@
+<table class='table table-condensed'>
+  <tr>
+	<td>	
+		<img src='/img/BCARE_Honeycomb_Art.png' width='200'/>
+	</td>
+	
+	<td>
+	
+	<div class="row">  
+		<div id="grad1"></div><br/>
+		<span style="font-size: 24px; color: #CC0000;"><a name="content"></a>Help Desk Tools</span><br/><br/>
+
+
+		<% if( messages ) { %>
+		<div class='alert alert-error'>
+		 <button type="button" class="close" data-dismiss="alert">&times;</button>
+		 <%= messages %>
+		</div>
+		<% } %>
+
+<% if( user === undefined ) { %>
+	<div class='row'>
+		<h2>Help Desk Request Form</h2>
+	<br/>
+	
+	<div class='well'>
+	The Help Desk is a virtual resource and not a location. Trainers, Administrators, and End Users from any location can access the Help Desk, which will provide live staffing during business hours across the 10 CMS regions and a message box for awardees to leave questions after hours. 
+	Please add helpdesk@caretoolsystem.com to your accepted email addresses so you may receive our emails.
+	Do not submit any confidential information such as PII or PHI using this form.
+	</div>
+
+
+	<form role='form' class="form-horizontal" action='/help_desk/submit_anon_ticket' method='POST' name='ticket_form' id='ticket_form'>
+
+	<fieldset>
+	
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Contact Name</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='name' name='name' value='<%= name %>'/>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Email</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='email' name='email' value='<%= email %>'/>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Phone Number</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='phone' name='phone' value='<%= phone %>'/>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Facility Name</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='facility_name' name='facility_name' value='<%=facility_name %>'/>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Facility Address</label>
+	    <div class="col-sm-10">
+		<textarea class='form-control' id='facility_address' name='facility_address'><%= facility_address %></textarea>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">BPID</label>
+	    <div class="col-sm-10">
+		<input class='form-control' id='facility_bpid' name='facility_bpid' value='<%= facility_bpid %>'/>
+		</div>
+	</div>
+	
+	<label>Topic Options</label><br/>
+	<div class="col-lg-6">
+	    <div class="input-group">
+	      <span class="input-group-addon">
+	        <input type="radio" name='topic' value='B-CARE-Portal-Log-in-Form' checked>
+	      </span>
+	      <input type="text" class="form-control" value="B-CARE Portal Log-in Form (access)" />
+	    </div><!-- /input-group -->
+
+	    <div class="input-group">
+	      <span class="input-group-addon">
+	        <input type="radio" name='topic' value='B-CARE-Tool-Assessment-Submission'>
+	      </span>
+	      <input type="text" class="form-control" value="B-CARE Tool Assessment Submission (Web or Paper Version) or Clarification Issues" />
+	    </div><!-- /input-group -->
+
+	    <div class="input-group">
+	      <span class="input-group-addon">
+	        <input type="radio" name='topic' value='B-CARE-Training-Questions'>
+	      </span>
+	      <input type="text" class="form-control" value="Training Questions on B-CARE Tool Assessment" />
+	    </div><!-- /input-group -->
+
+	    <div class="input-group">
+	      <span class="input-group-addon">
+	        <input type="radio" name='topic' value='B-CARE-Training-Registration-Issues'>
+	      </span>
+	      <input type="text" class="form-control" value="Training Registration Issues" />
+	    </div><!-- /input-group -->
+
+	    <div class="input-group">
+	      <span class="input-group-addon">
+	        <input type="radio" name='topic' value='B-CARE-Policy-or-Clinical-Questions'>
+	      </span>
+	      <input type="text" class="form-control" value="Policy or Clinical Questions on B-CARE Tool Assessment" />
+	    </div><!-- /input-group -->
+
+	    <div class="input-group">
+	      <span class="input-group-addon">
+	        <input type="radio" name='topic' value='B-CARE-Other-Issues'>
+	      </span>
+	      <input type="text" class="form-control" value="Other Issues" />
+	    </div><!-- /input-group -->
+	  </div>
+	
+	  <br/>
+	<div class='form-group'>
+		<label for="id" class="col-sm-2 control-label">Describe Problem</label>
+	    <div class="col-sm-10">
+		<textarea class='form-control' id='problem' name='problem'><%= problem %></textarea>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript"
+	       src="http://www.google.com/recaptcha/api/challenge?k=6LcK1OwSAAAAANwbmbeOsb_UN8oveeJ8pnmC3KZs">
+	</script>
+	<noscript>
+	       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LcK1OwSAAAAANwbmbeOsb_UN8oveeJ8pnmC3KZs"
+	           height="300" width="500" frameborder="0"></iframe><br>
+	       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+	       </textarea>
+	       <input type="hidden" name="recaptcha_response_field"
+	           value="manual_challenge">
+	</noscript>
+	<br/>
+	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn">Clear</button>
+		
+    </fieldset>
+	</form>
+</div>
+	
+<% } else { %>
+<ul class="list-group" >
+	<li class="list-group-item"><a href="/help_desk/tickets">View My Help Desk Tickets</a></li>
+	<li class="list-group-item"><a href="/help_desk/new_ticket">Create New Help Desk Ticket</li>
+
+<!--
+	<li class="list-group-item"><a href="/help_desk/new_question">Ask A Public Question</li>
+-->
+	
+<!--  
+	<li class="list-group-item"><a href="/twilio">
+	<i class="glyphicon glyphicon-earphone"></i>&nbsp;Call Help Desk</a>
+	</li>
+	<li class="list-group-item"><a href="/help_desk/chat">Not Sure?</li>
+	-->
+</ul>
+
+<% } %>
+
+
+	</td></tr>
+</table>	
+<br/>
+<br/>
+
+
+
+
+
+
+
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/additional-methods.js"></script>
+
+<script>
+jQuery.validator.setDefaults({
+  debug: 	false,
+  success: 	"valid"
+});
+
+var validator = $( "#ticket_form" ).validate(
+	{
+		rules: {
+			name: {
+				required: true
+			},
+			facility_name: {
+				required: true
+			},
+			facility_address: {
+				required: true
+			},
+			facility_bpid: {
+				required: true
+			},
+			topicr: {required: function(element) {
+			   return $('input[name="topic"]:checked').val() == 'true';
+			}},				  
+			problem: {
+				required: true
+			},
+			email: {
+			  required: true,
+			  email: true	
+			},
+			phone: {
+				required: true,
+				phoneUS: true
+			}
+		},
+		message: {
+			phone: {
+				required: "Please enter a valid US Phone number such as +14032030399"
+			}
+	  }
+  });
+</script>

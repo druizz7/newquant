@@ -1,0 +1,25 @@
+<h3>Ticket #<%= ticket.id %> </h3>
+<div class="row">
+	<div class="col-md-8 ">
+		<table class='table table-bordered table-condensed'>
+			<tr><td width='80'>Status:</td><td><%= ticket.status %> </td></tr>
+			<tr><td width='80'>Created:</td><td><%= ticket.created_at %> </td></tr>
+			<tr><td width='80'>Updated:</td><td><%= ticket.updated_at %> </td></tr>
+			<tr><td width='80'>Subject:</td><td><%= ticket.subject %> </td></tr>
+			<tr><td width='80'>Description:</td><td><%= ticket.description %> </td></tr>
+		<table>
+	<div/>
+	
+	<b>Comments:</b>
+	<% for ( var c in ticket.comments ) { var comment = ticket.comments[c]; var author = find_user(ticket.users, comment.author_id)%>
+		<div class="col-md-8 ">
+			<table class='table table-bordered table-condensed'>
+				<tr><td width='80'>From:</td><td><%= author.name %> </td></tr>
+				<tr><td width='80'>Created:</td><td><%= comment.created_at %> </td></tr>
+				<tr><td width='80'>Body:</td><td><%- comment.html_body %> </td></tr>
+
+			</table>
+		</div>
+	<% } %>
+</div>
+

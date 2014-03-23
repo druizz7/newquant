@@ -1,0 +1,24 @@
+
+
+
+<h3>My Tickets (<%= max %>)</h3>
+
+<table class="table table-striped">
+  <theader>
+	<th>Ticket Id</th>
+	<th>Last Updated At</th>
+	<th>Status</th>
+	<th>Subject</th>
+  </theader>
+  <tbody>
+	<% for( var t in tickets ) { var ticket = tickets[t]; %>
+		<tr>
+			<td><a href='/help_desk/ticket/<%= ticket.id %>'><%= ticket.id %></a></td>
+			<td><%= new Date(Date.parse(ticket.updated_at)) %></td>
+			<td><%= ticket.status %></td>
+			<td><%= ticket.subject %></td>
+		</tr>
+	<% } %>
+  </tbody>
+</table>
+

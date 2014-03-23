@@ -1,0 +1,47 @@
+<div class='container'>
+<ol class="breadcrumb">
+  <li><a href="/training">Training Materials</a></li>
+  <li class="active"><%= title %></li>
+</ol>
+
+<h2><%= title %></h2>
+<hr/>
+
+<% for( var f in files ) { var file = files[f]; if(file != null ) { %>
+	<div class="row">
+		 
+	  <table class='table-condensed'>
+	  	<tr>
+			<td width='200'>
+				<img src="http://<%= file.ThumbnailURL %>" height='80'/></td>
+			<td>
+				<a href="javascript:display_iframe('<%=file.ID%>', '<%=file.Embed%>');"><%= file.Title %></a><br/>
+				<%= file.Description %><br/>
+				&nbsp;<em class='text-muted'>Last Updated: <%= file.Updated %></em>
+				<% if( file.DownloadUrl != undefined ) { %>
+				<a href='<%= file.DownloadUrl %>'><i class='glyphicon glyphicon-download-alt'></i>Download</a>
+				<% } %>				
+			</td>
+		</tr>
+  	  </table>
+	  <div class='container'>
+	  <div id="div-<%=file.ID%>" style="display:none"></div>
+	  </div>
+	</div><br/>
+<% }} %>
+</div>
+
+<br/>
+<br/>
+<script>
+
+function display_iframe(id, html) {
+	var frameID = "div-"+id
+	var iframe	= $('#'+frameID)
+	
+	// we need to remove the div
+	iframe.html(html.replace("<div", "<div style='display:none'"));
+	iframe.toggle();
+    iframe.innerHTML = iframe.innerHTML;
+}
+</script>
