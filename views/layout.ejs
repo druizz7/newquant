@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Quant Group - Data Resources</title>
+
+<link href="includes/econoStyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jscript/jquery-1.10.2.min.js"></script>
+
+<!--[if IE 6]>
+<style>
+	#navlist a {height: 1em;}
+</style>
+<![endif]-->
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    // Expand/Collapse All
+
+    $('#example1 .expand_all').click(function() {
+
+        $('#menu1 > li > a.collapsed').addClass('expanded').removeClass('collapsed').parent().find('> ul').slideDown('medium');
+
+    });
+
+    $('#example1 .collapse_all').click(function() {
+
+        $('#menu1 > li > a.expanded').addClass('collapsed').removeClass('expanded').parent().find('> ul').slideUp('medium');
+
+    });
+
+    // Slide
+
+    $("#menu1 > li > a.expanded + ul").slideToggle("medium");
+
+    $("#menu1 > li > a").click(function() {
+
+        $(this).toggleClass("expanded").toggleClass("collapsed").parent().find('> ul').slideToggle("medium");
+
+    });
+
+ 
+
+
+    // Accordion
+
+    $("#menu5 > li > a.expanded + ul").slideToggle("medium");
+
+    $("#menu5 > li > a").click(function() {
+
+        $("#menu5 > li > a.expanded").not(this).toggleClass("expanded").toggleClass("collapsed").parent().find('> ul').slideToggle("medium");
+
+        $(this).toggleClass("expanded").toggleClass("collapsed").parent().find('> ul').slideToggle("medium");
+
+    });
+
+});
+
+</script>  
+</head>
+
+<body bgcolor="#ffffff"> 
+<div id="container">
+<table width="800" border="0" align="center" cellpadding="0" cellspacing="0"> 
+  <tbody><tr> 
+    <td height="14" colspan="8" align="left" valign="top" class="header"><a name="top"></a></td> 
+  </tr> 
+  <tr> 
+    <td colspan="8" align="left" valign="top"> 
+	  <table border="0" width="800" height="87">
+		  <tbody><tr>
+		  <td><img src="includes/img_logo_med.jpg" alt="" width="185" height="87" border="0" usemap="#MapMap">
+		    <map name="MapMap">
+              <area shape="rect" coords="2,2,183,85" href="index.php" alt="Econometrica Home">
+            </map></td>
+		  <td valign="top"> 
+		    <div id="navlist"> 
+                <ul> 
+                  <li>&nbsp;
+                  
+                                 <a href="index.php">Home</a>&nbsp;&nbsp;
+				  <a href="about.php">About</a>&nbsp;&nbsp;
+				  <span id="uberlink"><a href="data.php?idx=11">Data & Research</a></span>&nbsp;&nbsp;
+				  <a href="dyk.php">Did you know?</a>
+				  
+				  
+				  </li> 
+				  
+                </ul> 
+          </div>
+		  </td>
+		  </tr>
+      </tbody></table></td> 
+    </tr>
+  <tr> 
+
+    <td align="left" valign="top" class="gutterLeft">&nbsp; </td> 
+	
+    <td colspan="5" align="left" valign="top">
+
+<!-- CONTENT AREA -->
+
+
+
+<p>&nbsp;</p> 
+	  
+	  </td> 
+    <td align="left" valign="top" class="gutterRight">&nbsp;</td> 
+    <td width="143" align="left" valign="top">
+
+	<table border="0" width="143"> 
+        <tbody><tr> 
+          <td align="left" valign="top" width="100">
+
+
+	       </td> 
+              </tr> 
+             </tbody>
+            </table>    
+           </td> 
+          <td align="left" valign="top">&nbsp;</td> 
+          </tr> 
+  <tr> 
+    <td height="31" align="left" valign="top">&nbsp; </td> 
+    <td height="31" align="left" valign="top">&nbsp; </td> 
+    <td height="31" colspan="3" align="center" valign="middle"> 
+	<table border="0" width="325"> 
+        <tbody><tr> 
+          <td align="center" valign="middle" width="100%">
+		  	<div id="sublist">
+				<ul><li><a href="contact.php">Contact Us</a> | <a href="insertUpdate.php">Admin:Add Update</a></li></ul></div></td> 
+          <td align="left" valign="top" width="2"></td> 
+        </tr> 
+      </tbody></table>
+      
+
+
+
+	  
+	  </td> 
+    <td height="31" align="left" valign="top">&nbsp; </td> 
+    <td height="31" align="left" valign="top">&nbsp; </td> 
+    <td height="31" align="left" valign="top">&nbsp; </td> 
+  </tr> 
+  <tr> 
+    <td height="33" colspan="8" align="center" valign="middle" class="footer">7475 Wisconsin Avenue, Suite 1000 Bethesda, MD 20814 Phone: (301) 657-9883 Fax: (301) 657-3140 </td> 
+  </tr> 
+  <tr> 
+    <td> <img src="includes/econo_img_spacer.gif" width="126" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="34" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="87" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="172" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="176" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="28" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="143" height="1" alt=""></td> 
+    <td> <img src="includes/econo_img_spacer.gif" width="35" height="1" alt=""></td> 
+  </tr> 
+</tbody></table> 
+</div> 
+<map name="Map">
+  <area shape="rect" coords="12,4,238,57" href="http://econometricainc.com/index.html" alt="Econometrica Home">
+</map>
+
+</body>
+</html>
